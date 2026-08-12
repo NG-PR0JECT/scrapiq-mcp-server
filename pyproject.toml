@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scrapiq-mcp-server"
+version = "0.1.0"
+description = "MCP server for Scrapiq — URL to clean text/markdown/json for LLM/RAG"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Nathan" }]
+dependencies = []
+
+[project.scripts]
+scrapiq-mcp = "scrapiq_mcp.server:main"
+
+[tool.setuptools]
+packages = ["scrapiq_mcp"]
