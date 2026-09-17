@@ -8,11 +8,17 @@ Dependency-free: pure Python stdlib, JSON-RPC 2.0 over stdio. No pip packages, n
 
 ## Install
 
+Not on PyPI yet, so install straight from this repo:
+
 ```bash
-pip install scrapiq-mcp-server
+# run it without installing anything (run against `main`, 2026-09-17)
+uvx --from git+https://github.com/NG-PR0JECT/scrapiq-mcp-server scrapiq-mcp
+
+# or install it into an isolated environment
+pipx install git+https://github.com/NG-PR0JECT/scrapiq-mcp-server
 ```
 
-Requires a running Scrapiq instance (see [Scrapiq README](https://github.com/NG-PR0JECT/scrapiq#quick-start) — one Docker command). Point the server at it:
+Requires a running Scrapiq instance (see [Scrapiq README](https://github.com/NG-PR0JECT/scrapiq#quick-start-self-hosted) — `git clone`, `pip install -e ".[dev]"`, then `scrapiq`). Point the server at it:
 
 ```bash
 SCRAPIQ_ENDPOINT=http://localhost:8001/v1/extract scrapiq-mcp
