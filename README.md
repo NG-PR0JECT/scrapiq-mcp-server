@@ -4,9 +4,27 @@
 
 [Scrapiq](https://github.com/NG-PR0JECT/scrapiq) is a lightweight open-source HTTP API that fetches a web page and returns clean content — boilerplate stripped. This server exposes it as a Model Context Protocol (MCP) tool so Claude Desktop, Cursor, and any MCP client can extract clean web content with one call.
 
-Dependency-free: pure Python stdlib, JSON-RPC 2.0 over stdio. No pip packages, no node_modules.
+Dependency-free: pure Python stdlib, no pip packages, no node_modules. Two transports: **stdio** for local clients, **streamable HTTP** for remote clients.
 
-## Install
+## Use the hosted server (no install)
+
+The server is listed in the official MCP Registry as [`io.scrapiq/scrapiq`](https://registry.modelcontextprotocol.io/v0/servers?search=scrapiq) and runs at:
+
+```
+https://scrapiq.io/mcp
+```
+
+No key, no install — add that URL as a remote MCP server in any client that supports streamable HTTP:
+
+```json
+{
+  "mcpServers": {
+    "scrapiq": { "url": "https://scrapiq.io/mcp" }
+  }
+}
+```
+
+## Install locally
 
 Not on PyPI yet, so install straight from this repo:
 
@@ -23,6 +41,14 @@ Requires a running Scrapiq instance (see [Scrapiq README](https://github.com/NG-
 ```bash
 SCRAPIQ_ENDPOINT=http://localhost:8001/v1/extract scrapiq-mcp
 ```
+
+## Run your own HTTP endpoint
+
+```bash
+scrapiq-mcp --http --host 127.0.0.1 --port 8002   # serves POST /mcp
+```
+
+Stateless: one `POST /mcp` per JSON-RPC message (or batch), replies with `application/json`. It issues no `Mcp-Session-Id` and offers no server→client SSE stream, so `GET /mcp` answers 405 by design. CORS is open, so browser-based clients (e.g. MCP Inspector) can call it directly.
 
 ## Usage with Claude Desktop
 
