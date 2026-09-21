@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.scrapiq/scrapiq",
+  "title": "Scrapiq",
+  "description": "Any URL to clean text, markdown, or JSON for LLM/RAG pipelines.",
+  "version": "0.2.0",
+  "websiteUrl": "https://scrapiq.io",
+  "repository": {
+    "url": "https://github.com/NG-PR0JECT/scrapiq-mcp-server",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://scrapiq.io/mcp"
+    }
+  ]
+}
